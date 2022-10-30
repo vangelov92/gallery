@@ -43,7 +43,7 @@ export default function Browser() {
             <div className="list">
             {
                 state.images.map((image, index) => {
-                    return <div className="image" data-active={state.pivot === index} key={index}>
+                    return <div className="image" title={image.name} data-active={state.pivot === index} key={index}>
                         <label onClick={
                             () => {
                                 dispatch(activate(index));
