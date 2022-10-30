@@ -1,0 +1,78 @@
+[data-component="Viewer"] {
+    display: flex;
+    align-items: center;
+
+    @mixin button($type) {
+        width: 64px;
+        height: 64px;
+        color: #BDBDBD;
+        background: none;
+        margin: 8px;
+        padding: 0px;
+        box-sizing: border-box;
+        border: 1px solid transparent;
+        border-radius: 4px;
+
+        &[disabled] {
+            opacity: 0.4;
+        }
+
+        &:not([disabled]) {
+            cursor: pointer;
+
+            &:hover {
+                border: 1px solid #BDBDBD;
+                transition: border 0.2s ease-in;
+            }
+
+            &:active {
+                border: 1px solid #BDBDBD;
+                background: #F1F1F1;
+            }
+        }
+
+        &:before {
+            font-family: "Material Symbols Rounded";
+            font-size: 4em;
+
+            @if $type == "prev" {
+                content: '\e408';
+            } @else if $type == "next" {
+                content: '\e409';
+            }
+        }
+    }
+
+    > .prev {
+        @include button("prev");
+    }
+
+    > .next {
+        @include button("next");
+    }
+
+    > .preview {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 800px;
+        min-height: 600px;
+        border: 1px solid #BDBDBD;
+        border-radius: 4px;
+        overflow: hidden;
+
+        &[data-images="0"]:before {
+            content: "No images have been loaded yet";
+            font-style: italic;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}

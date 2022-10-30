@@ -1,0 +1,88 @@
+[data-component="Picker"] {
+    position: relative;
+
+    > .overlay {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px;
+        color: #FFF;
+        background: #4CAF50;
+        border: 1px solid #BDBDBD;
+        border-radius: 4px;
+
+        &:before {
+            content: '\e2c3';
+            padding-right: 4px;
+            font-family: "Material Symbols Rounded";
+        }
+    }
+
+    > input {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    &:hover {
+        > .overlay {
+            opacity: 0.8;
+        }
+    }
+
+    &:active {
+        > .overlay {
+            opacity: 0.9;
+        }
+    }
+
+    &[data-loading="true"] {
+        cursor: default;
+
+        > .lens {
+            display: none;
+        }
+
+        > img {
+            display: none;
+        }
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: #222;
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            margin: auto;
+            border-radius: 50%;
+            background: conic-gradient(transparent, transparent 50%, #FFF);
+            animation: rotate 1s linear infinite;
+            mask: radial-gradient(farthest-side, transparent calc(100% - 25px),#FFF 0);
+            -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 25px),#FFF 0);
+            z-index: 1;
+        }
+            
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+    }
+}
